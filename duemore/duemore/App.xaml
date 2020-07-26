@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:DueMore.ViewModels"
+             mc:Ignorable="d"
+             x:Class="DueMore.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <vm:NewInboxItemVM x:Key="vm" />
+            
+            <Color x:Key="fgColor">#66169C</Color>
+            <Color x:Key="detailColor">#764796</Color>
+            <Color x:Key="bgColor">#FFFFFF</Color>
+            <Color x:Key="OverDueItem">#FF1C07</Color>
+            <Color x:Key="textColor">#223995</Color>
+
+            <!--Image x:Key="logo" Source="duemore_logo.png" />
+            <Image x:Key="addItem" Source="add_circle_outline_fgColor.png" />
+            <Image x:Key="calendarItem" Source="ic_calendar_today_custom_18pt.png" />
+            <Image x:Key="cancel" Source="ic_cancel_custom_18pt.png" />
+            <Image x:Key="createPen" Source="ic_create_custom_18pt.png" />
+            <Image x:Key="detailImage" Source="ic_details_custom_18pt.png" />
+            <Image x:Key="filterList" Source="ic_filter_list_custom_18pt.png" />
+            <Image x:Key="folderImage" Source="ic_folder_custom_18pt.png" -->
+            <Style TargetType="Label" x:Key="NonChangingText">
+                <Setter Property="TextColor" Value="{DynamicResource textColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style TargetType="Label" x:Key="AboutPageText">
+                <Setter Property="TextColor" Value="{DynamicResource fgColor}" />
+            </Style>
+            <Style TargetType="Entry" x:Key="entryStyle">
+                <Setter Property="TextColor" Value="{StaticResource fgColor}"/>
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource fgColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="Editor" x:Key="editorStyle">
+                <Setter Property="TextColor" Value="{StaticResource fgColor}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource fgColor}" />
+            </Style>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource bgColor}" />
+                <Setter Property="BarTextColor" Value="{DynamicResource fgColor}" />
+            </Style>
+            <ControlTemplate x:Key="MainPageTemplate">
+                <StackLayout>
+                    <ContentPresenter />
+                    <StackLayout Orientation="Horizontal" Margin="5" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
+                        <Entry x:Name="itemEntry" Placeholder="Inbox Item" HeightRequest="50" HorizontalOptions="FillAndExpand" Style="{StaticResource entryStyle}" Text="{Binding ItemName, Mode=TwoWay}"/>
+                        <ImageButton Source="add_circle_outline_fgColor.png" Margin="5,0" BackgroundColor="Transparent" Clicked="Save_Clicked" Command="{Binding Source={StaticResource vm}, Path=SaveInboxItemCommand}" CommandParameter="{Binding Source={StaticResource vm}, Path=ItemName}" />
+                        <ImageButton Source="ic_create_custom_18dp.png" Margin="5,0" BackgroundColor="Transparent" Clicked="Detail_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:DueMore.ViewModels"
+             mc:Ignorable="d"
+             x:Class="DueMore.Views.InboxDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:InboxDetailVM x:Key="vm" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Update" BindingContext="{StaticResource vm}" Command="{Binding UpdateCommand}" CommandParameter="{Binding ItemName}"/>
+        <ToolbarItem Text="Delete" BindingContext="{StaticResource vm}" Command="{Binding DeleteCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Margin="16">
+            <StackLayout Orientation="Horizontal" BindingContext="{StaticResource vm}">
+                <Label Text="Name: " Style="{StaticResource NonChangingText}" FontSize="14"/>
+                <Entry WidthRequest="200" Style="{StaticResource entryStyle}" Placeholder="Item Name" Text="{Binding ItemName, Mode=TwoWay}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Notes: " Style="{StaticResource NonChangingText}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="14"/>
+                <Editor Margin="5,15" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="50" Style="{StaticResource editorStyle}" Placeholder="Place your notes here!" Text="{Binding Notes, Mode=TwoWay}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

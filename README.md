@@ -1,2 +1,2 @@
-# DueMore
-Due More is a task and project management app in development by Smith Brothers Development, LLC
+# duemore_new
+ This is a restructure and simplification of the "duemore" repository
