@@ -13,18 +13,18 @@ namespace DueMore.ViewModels
 
     class InboxDetailVM : INotifyPropertyChanged
     {
-        private InboxItems inboxItems;
+        private InboxItems inboxItem;
         public InboxItems InboxItems
         {
             get
             {
-                return inboxItems;
+                return inboxItem;
             }
             set
             {
-                inboxItems = value;
-                ItemName = inboxItems.ItemName;
-                Notes = inboxItems.Notes;
+                inboxItem = value;
+                ItemName = inboxItem.ItemName;
+                Notes = inboxItem.Notes;
                 OnPropertyChanged("InboxItem");
             }
         }
@@ -78,14 +78,22 @@ namespace DueMore.ViewModels
             return !string.IsNullOrEmpty(ItemName);
         }
 
-        private void Update(object parameter)
+        private async void Update(object parameter)
         {
-            FirestoreInboxHelper.UpdateInboxItem(InboxItems);
+            bool result = await FirestoreInboxHelper.UpdateInboxItem(InboxItems);
+            if (result)
+                await App.Current.MainPage.Navigation.PopAsync();
+            else
+                await App.Current.MainPage.DisplayAlert("Error", "Something went wrong, please try again", "OK");
         }
 
-        private void Delete(object parameter)
+        private async void Delete(object parameter)
         {
-            FirestoreInboxHelper.DeleteInboxItem(InboxItems);
+            bool result = await FirestoreInboxHelper.DeleteInboxItem(InboxItems);
+            if (result)
+                await App.Current.MainPage.Navigation.PopAsync();
+            else
+                await App.Current.MainPage.DisplayAlert("Error", "Something went wrong, please try again", "OK");
         }
 
         private void OnPropertyChanged(string propertyName)

@@ -26,10 +26,6 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <ViewCell.ContextActions>
-                            <MenuItem Text="More" Command="{Binding }" />
-                            <MenuItem Text="Delete" Command="{Binding Source={StaticResource vm1}, Path=DeleteCommand}" IsDestructive="True" />
-                        </ViewCell.ContextActions>
                         <StackLayout Padding="15,5">
                             <Label Text="{Binding ItemName}" TextColor="{StaticResource fgColor}" />
                             <Label Text="{Binding Notes}" TextColor="{StaticResource detailColor}" />

@@ -13,8 +13,6 @@ namespace DueMore.ViewModels
     
     public class NewInboxItemVM : INotifyPropertyChanged
     {
-        private const int MaxValue = 999999999;
-        private Random generator = new Random();
 
         private string itemName;
         public string ItemName
@@ -44,19 +42,18 @@ namespace DueMore.ViewModels
             return !string.IsNullOrEmpty(ItemName);
         }
 
-        private void SaveInboxItem(object obj)
+        private async void SaveInboxItem(object obj)
         {
             bool result = FirestoreInboxHelper.AddInboxItem(new Models.InboxItems
             {
                 ItemName = ItemName,
                 Notes = Notes,
-                UserId = Auth.GetCurrentId(),
-                Id = generator.Next(MaxValue)
+                UserId = Auth.GetCurrentId()
             });
             if (result)
-                App.Current.MainPage.Navigation.PopAsync();
+                await App.Current.MainPage.Navigation.PopAsync();
             else
-                App.Current.MainPage.DisplayAlert("Error", "Something went wrong, please try again", "OK");
+                await App.Current.MainPage.DisplayAlert("Error", "Something went wrong, please try again", "OK");
         }
 
         private void OnPropertyChanged(string propertyName)

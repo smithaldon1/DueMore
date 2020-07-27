@@ -42,9 +42,19 @@ namespace DueMore.iOS.Dependencies
             }
         }
 
-        public Task<bool> DeleteInboxItem(InboxItems inboxItems)
+        public async Task<bool> DeleteInboxItem(InboxItems inboxItem)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var collection = Firebase.CloudFirestore.Firestore.SharedInstance.GetCollection("inboxItems");
+                await collection.GetDocument(inboxItem.Id).DeleteDocumentAsync();
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public async Task<IList<InboxItems>> ReadInbox()
@@ -64,6 +74,7 @@ namespace DueMore.iOS.Dependencies
                         ItemName = inboxDictionary.ValueForKey(new NSString("item name")) as NSString,
                         Notes = inboxDictionary.ValueForKey(new NSString("notes")) as NSString,
                         UserId = inboxDictionary.ValueForKey(new NSString("author")) as NSString
+                        Id = doc.Id
                     };
                     inboxItems.Add(inboxItem);
                 }
@@ -75,9 +86,32 @@ namespace DueMore.iOS.Dependencies
             }
         }
 
-        public Task<bool> UpdateInboxItem(InboxItems inboxItems)
+        public async Task<bool> UpdateInboxItem(InboxItems inboxItem)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var keys = new[]
+                {
+                    new NSString("item name"),
+                    new NSString("notes")
+                };
+
+                var values = new NSObject[]
+                {
+                    new NSString(inboxItem.ItemName),
+                    new NSString(inboxItem.Notes),
+                };
+
+                var inboxItemsDocument = new NSDictionary<NSObject, NSObject>(keys, values);
+
+                var collection = Firebase.CloudFirestore.Firestore.SharedInstance.GetCollection("inboxItems");
+                await collection.GetDocument(inboxItem.Id).UpdateDataAsync(inboxItemsDocument);
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
         //private static NSDate DateTimeToNSDate(DateTime date)
         //{

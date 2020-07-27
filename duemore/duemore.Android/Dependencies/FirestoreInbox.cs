@@ -44,9 +44,18 @@ namespace DueMore.Droid.Dependencies
             }
         }
 
-        public Task<bool> DeleteInboxItem(InboxItems inboxItems)
+        public async Task<bool> DeleteInboxItem(InboxItems inboxItem)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var collection = Firebase.Firestore.FirebaseFirestore.Instance.Collection("inboxItems");
+                collection.Document(inboxItem.Id).Delete();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public async Task<IList<InboxItems>> ReadInbox()
@@ -77,7 +86,8 @@ namespace DueMore.Droid.Dependencies
                     {
                         ItemName = doc.Get("item name").ToString(),
                         Notes = doc.Get("notes").ToString(),
-                        UserId = doc.Get("author").ToString()
+                        UserId = doc.Get("author").ToString(),
+                        Id = doc.Id
                     };
 
                     inboxItems.Add(inboxItem);
@@ -90,9 +100,18 @@ namespace DueMore.Droid.Dependencies
             hasReadInboxItems = true;
         }
 
-        public Task<bool> UpdateInboxItem(InboxItems inboxItems)
+        public async Task<bool> UpdateInboxItem(InboxItems inboxItem)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var collection = Firebase.Firestore.FirebaseFirestore.Instance.Collection("inboxItems");
+                collection.Document(inboxItem.Id).Update("ItemName", inboxItem.ItemName, "Notes", inboxItem.Notes);
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 
 
