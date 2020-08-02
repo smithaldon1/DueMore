@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DueMore.View.InboxPageView"
+             xmlns:vm="clr-namespace:DueMore.ViewModel"
+             Title="Inbox">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:InboxItemsVM x:Key="vm" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Details"
+                     Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView BindingContext="{StaticResource vm}"
+                  ItemsSource="{Binding InboxItems}"
+                  SelectedItem="{Binding SelectedInboxItem, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}"
+                              Detail="{Binding Notes}"
+                              DetailColor="{StaticResource accentColor}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+
+    <StackLayout Orientation="Horizontal" VerticalOptions="End" BindingContext="{StaticResource vm}">
+        <Entry Placeholder="Inbox Item" Text="{Binding Name}" TextColor="{StaticResource mainColor}" BackgroundColor="White" HorizontalOptions="StartAndExpand" />
+        <Button Text="Save" TextColor="{StaticResource mainColor}" Command="{Binding SaveInboxItem}" />
+    </StackLayout>
+</ContentPage>

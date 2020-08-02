@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>112772590519-sb1gjeu90iaflaev7bfmcj5opmf6c7us.apps.googleusercontent.com</string>
+	<string>124002657537-urtkp8cnmaj11q4ur542b7glj5p6lffc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.112772590519-sb1gjeu90iaflaev7bfmcj5opmf6c7us</string>
+	<string>com.googleusercontent.apps.124002657537-urtkp8cnmaj11q4ur542b7glj5p6lffc</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBA7DWMYNY-YMVuQ3gI1W38xpXRQ5ucwR4</string>
+	<string>AIzaSyCWWjUDeWFmAiYHHtP71HI2AKicGSQDipY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>112772590519</string>
+	<string>124002657537</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.smithbrosdev.DueMore</string>
+	<string>com.companyname.DueMore</string>
 	<key>PROJECT_ID</key>
-	<string>due-more</string>
+	<string>duemore-test</string>
 	<key>STORAGE_BUCKET</key>
-	<string>due-more.appspot.com</string>
+	<string>duemore-test.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:112772590519:ios:97034200aa4556dc375632</string>
+	<string>1:124002657537:ios:ea26dfbfc99e35f583a700</string>
 	<key>DATABASE_URL</key>
-	<string>https://due-more.firebaseio.com</string>
+	<string>https://duemore-test.firebaseio.com</string>
 </dict>
 </plist>

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Firebase.Auth;
-using DueMore.ViewModels.Helpers;
-using Xamarin.Forms;
+using DueMore.DAL;
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(DueMore.iOS.Dependencies.Auth))]
 namespace DueMore.iOS.Dependencies
@@ -24,19 +26,18 @@ namespace DueMore.iOS.Dependencies
             }
             catch (NSErrorException ex)
             {
-                string message = ex.Message.Substring(ex.Message.IndexOf("NSLocalizedDescription=", StringComparison.CurrentCulture));
-                message = message.Replace("NSLocallizedDescription =", "").Split(".")[0];
+                string message = ex.Message.Substring(ex.Message.IndexOf("NSLocalalizedDescription=", StringComparison.CurrentCulture));
+                message = message.Replace("NSLocalizedDescription=", "").Split('.')[0];
                 message += ".";
-
                 throw new Exception(message);
             }
             catch (Exception)
             {
-                throw new Exception("An unknown error occurred, please try again");
+                throw new Exception("An unknown error occurred, please try again.");
             }
         }
 
-        public string GetCurrentId()
+        public string GetCurrentUserId()
         {
             return Firebase.Auth.Auth.DefaultInstance.CurrentUser.Uid;
         }
@@ -51,21 +52,21 @@ namespace DueMore.iOS.Dependencies
             try
             {
                 await Firebase.Auth.Auth.DefaultInstance.CreateUserAsync(email, password);
-                //var changeRequest = new Firebase.Auth.
-
+                var changeRequest = Firebase.Auth.Auth.DefaultInstance.CurrentUser.ProfileChangeRequest();
+                changeRequest.DisplayName = name;
+                await changeRequest.CommitChangesAsync();
                 return true;
             }
             catch (NSErrorException ex)
             {
-                string message = ex.Message.Substring(ex.Message.IndexOf("NSLocalizedDescription=", StringComparison.CurrentCulture));
-                message = message.Replace("NSLocallizedDescription =", "").Split(".")[0];
+                string message = ex.Message.Substring(ex.Message.IndexOf("NSLocalalizedDescription=", StringComparison.CurrentCulture));
+                message = message.Replace("NSLocalizedDescription=", "").Split('.')[0];
                 message += ".";
-
                 throw new Exception(message);
             }
             catch (Exception)
             {
-                throw new Exception("An unknown error occurred, please try again");
+                throw new Exception("An unknown error occurred, please try again.");
             }
         }
     }

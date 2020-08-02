@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "112772590519",
-    "firebase_url": "https://due-more.firebaseio.com",
-    "project_id": "due-more",
-    "storage_bucket": "due-more.appspot.com"
+    "project_number": "124002657537",
+    "firebase_url": "https://duemore-test.firebaseio.com",
+    "project_id": "duemore-test",
+    "storage_bucket": "duemore-test.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:112772590519:android:0764c677e7609596375632",
+        "mobilesdk_app_id": "1:124002657537:android:5c7ddd1ad7305fc383a700",
         "android_client_info": {
-          "package_name": "com.smithbrosdev.duemore"
+          "package_name": "com.companyname.duemore"
         }
       },
       "oauth_client": [
         {
-          "client_id": "112772590519-m5bbbtr7ggr3aehaelauf59vfpo88g7j.apps.googleusercontent.com",
+          "client_id": "124002657537-a6sf1qklic1q21dfo46ggc0rdta3fotn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDLxE1GTZyyTEs-pSUrjfIyBBFO3HhCMA8"
+          "current_key": "AIzaSyCmpfGfck8s17gSqG2hwb9afKtYy2vCDkc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "112772590519-m5bbbtr7ggr3aehaelauf59vfpo88g7j.apps.googleusercontent.com",
+              "client_id": "124002657537-a6sf1qklic1q21dfo46ggc0rdta3fotn.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "112772590519-sb1gjeu90iaflaev7bfmcj5opmf6c7us.apps.googleusercontent.com",
+              "client_id": "124002657537-urtkp8cnmaj11q4ur542b7glj5p6lffc.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.smithbrosdev.DueMore"
+                "bundle_id": "com.companyname.DueMore"
               }
             }
           ]

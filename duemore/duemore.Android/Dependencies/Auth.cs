@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Firebase.Auth;
-using DueMore.ViewModels.Helpers;
-using Xamarin.Forms;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using DueMore.DAL;
+using Firebase.Auth;
+using Xamarin.Forms;
 
 [assembly: Dependency(typeof(DueMore.Droid.Dependencies.Auth))]
 namespace DueMore.Droid.Dependencies
@@ -39,13 +41,13 @@ namespace DueMore.Droid.Dependencies
             {
                 throw new Exception(ex.Message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("An unknown error occurred, please try again");
+                throw new Exception("An unknown error occurred, please try again.");
             }
         }
 
-        public string GetCurrentId()
+        public string GetCurrentUserId()
         {
             return Firebase.Auth.FirebaseAuth.Instance.CurrentUser.Uid;
         }
@@ -60,10 +62,10 @@ namespace DueMore.Droid.Dependencies
             try
             {
                 await Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
+
                 var profileUpdates = new Firebase.Auth.UserProfileChangeRequest.Builder();
                 profileUpdates.SetDisplayName(name);
                 var build = profileUpdates.Build();
-
                 var user = Firebase.Auth.FirebaseAuth.Instance.CurrentUser;
                 await user.UpdateProfileAsync(build);
 
@@ -81,9 +83,9 @@ namespace DueMore.Droid.Dependencies
             {
                 throw new Exception(ex.Message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("An unknown error occurred, please try again");
+                throw new Exception("An unknown error occurred, please try again.");
             }
         }
     }

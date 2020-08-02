@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:DueMore.ViewModel"
+             x:Class="DueMore.View.InboxDetailView"
+             Title="Inbox - Detail">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:InboxDetailVM x:Key="vm" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Update"
+                     BindingContext="{StaticResource vm}"
+                     Command="{Binding UpdateCommand}"
+                     CommandParameter="{Binding Name}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Margin="15">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Item Name: " TextColor="{StaticResource mainColor}" Style="{StaticResource label}"/>
+                <Entry Placeholder="Name " Text="{Binding Name, Mode=TwoWay}" HorizontalOptions="StartAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Start Date:" TextColor="{StaticResource mainColor}" Style="{StaticResource label}"/>
+                <DatePicker x:Name="startDatePicker" Format="D" Margin="30,0,0,30" Date="{Binding StartDate, Mode=TwoWay}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Due Date:" TextColor="{StaticResource mainColor}" />
+                <DatePicker x:Name="duetDatePicker" Format="D" Margin="30,0,0,30" Date="{Binding StartDate, Mode=TwoWay}" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
